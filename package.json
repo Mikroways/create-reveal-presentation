@@ -1,0 +1,15 @@
+{
+  "name": "@mikroways/create-reveal-presentation",
+  "description": "Create Mikroways reveal-md presentation",
+  "version": "0.1.0",
+  "author": "Christian Rodriguez <christian.rodriguez@mikroways.net>",
+  "bin": "src/cli.js",
+  "files": [
+    "src",
+    "templates"
+  ],
+  "dependencies": {
+    "create-create-app": "^7.3.0"
+  },
+  "license": "MIT"
+}

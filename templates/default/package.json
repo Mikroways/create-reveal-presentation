@@ -1,0 +1,13 @@
+{
+  "name": "{{kebab name}}",
+  "description": "{{description}}",
+  "version": "0.0.0",
+  "author": "{{contact}}",
+  "dependencies": {},
+  "scripts": {
+    "start": "reveal-md src/start.md --preprocessor preproc.js --watch",
+    "static": "reveal-md src/start.md --preprocessor preproc.js --static",
+    "container": "npm run static && buildah build -f Containerfile -t {{kebab name}} _static"
+  },
+  "license": "{{license}}"
+}
