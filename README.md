@@ -7,7 +7,7 @@ Create Mikroways reveal-md presentation
 ## Usage
 
 ```bash
-npx @mikroways/create-reveal-presentation <name>
+npx @mikroways/create-reveal-presentation@latest <name>
 ```
 
 That's all! Answer each question and follow instructions, then start writing
