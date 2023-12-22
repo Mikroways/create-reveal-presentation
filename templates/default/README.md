@@ -100,3 +100,24 @@ Finally, is possible to add a custom class:
 CODE: example.sh bash 1,3-6 class="my-code"
 CODE: example.sh bash class="my-code"
 ```
+
+## Containers support
+
+This repo provides a Containerfile and a npm script to build a Container image
+using buildah:
+
+```
+npm run container
+```
+
+This image can be tested using podman:
+
+```
+podman run -p 8080:8080 {{ name }}:latest
+```
+
+Try it with:
+
+```
+xdg-open http://localhost:8080
+```
