@@ -12,9 +12,7 @@ create('create-mw-reveal-presentation', {
   defaultLicense: 'MIT',
   after: async ({ installNpmPackage }) => {
     console.log('Installing required packages');
-    await installNpmPackage([
-      'reveal-md',
-      '@mikroways/reveal-md-common']);
+    await installNpmPackage('reveal-md');
   },
   caveat: ({ packageDir }) =>  {
     console.log('\nNext steps:');
