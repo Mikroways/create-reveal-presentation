@@ -28,7 +28,8 @@ const loadFileContent = (line, opts) => {
   return doProcess(readFileSync(path.join(basePath, filePath), 'utf8'), opts)
   }catch(err) {
     console.log(`Error loading new file from ${path.join(basePath, filePath)} at ${line.match(FILE_REF_REGEX)[0]}`)
-    throw(err)
+    if (opts.mikroways.debug) console.log(err)
+    return line
   }
 }
 
@@ -49,7 +50,8 @@ const loadCodeFileContent = (line, opts) => {
     return codeTemplate(code, lang, props)
   } catch(err) {
     console.log(`Error loading code file from ${path.join(basePath, filePath)} at ${line.match(CODE_FILE_REF_REGEX)[0]}`)
-    throw(err)
+    if (opts.mikroways.debug) console.log(err)
+    return line
   }
 }
 
