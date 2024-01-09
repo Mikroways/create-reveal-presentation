@@ -10,8 +10,9 @@
     "prepare": "postinstall",
     "prestart": "postinstall",
     "prestatic": "postinstall",
+    "poststatic": "rm _static/_assets/src/js/script.js && cp -L src/js/script.js _static/_assets/src/js/script.js",
     "start": "reveal-md src/start.md --preprocessor preproc.js --watch",
-    "static": "reveal-md src/start.md --preprocessor preproc.js --static",
+    "static": "rm -fr _static && reveal-md src/start.md --preprocessor preproc.js --static",
     "container": "npm run static && buildah build -f Containerfile -t {{kebab name}} _static"
   },
   "prepare": {

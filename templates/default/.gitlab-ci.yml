@@ -1,0 +1,13 @@
+image: node:18.9-alpine
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  script:
+    - npm i
+    - npm run static
+    - mv _static public
+  artifacts:
+    paths:
+      - public
