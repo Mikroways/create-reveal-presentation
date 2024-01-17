@@ -1,33 +1,33 @@
 {
-  "name": "{{kebab name}}",
+  "name": "{{capital name space=true}}",
   "description": "{{description}}",
   "version": "0.0.0",
-  "author": "{{contact}}",
   "dependencies": {
-    "@mikroways/reveal-md-common": "^1.0.0"
+    "@mikroways/reveal-md-common": "^1.1.0",
+    "@mikroways/md2pdf-theme": "^1.0.0"
   },
+  "author": "{{contact}}",
   "scripts": {
     "prepare": "postinstall",
     "prestart": "postinstall",
     "prestatic": "postinstall",
     "poststatic": "rm _static/_assets/src/js/script.js && cp -L src/js/script.js _static/_assets/src/js/script.js",
-    "start": "reveal-md src/start.md --preprocessor preproc.js --watch",
-    "static": "rm -fr _static && reveal-md src/start.md --preprocessor preproc.js --static",
-    "container": "npm run static && buildah build -f Containerfile -t {{kebab name}} _static"
+    "start": "reveal-md src/start.md --preprocessor ../../@mikroways/reveal-md-common/preproc.js --watch --title \"$npm_package_name\"",
+    "static": "rm -fr _static && reveal-md src/start.md --preprocessor ../../@mikroways/reveal-md-common/preproc.js --static --title \"$npm_package_name\"",
+    "container": "npm run static && buildah build -f Containerfile -t {{kebab name}} _static",
+    "as-pdf": "reveal-md src/start.md --preprocessor ../../@mikroways/reveal-md-common/preproc.js --title \"$npm_package_name\" --print {{kebab name}}.pdf --page-size a4",
+    "docs": "md-to-pdf --document-title \"$npm_package_name\" --config-file node_modules/@mikroways/md2pdf-theme/config.js docs/**/*.md"
   },
   "prepare": {
     "@mikroways/reveal-md-common/src/js/script.js": "link src/js/script.js",
-    "@mikroways/reveal-md-common/preproc.js": "link preproc.js",
     "@mikroways/reveal-md-common/reveal-md.json": "link reveal-md.json"
   },
   "prestart": {
     "@mikroways/reveal-md-common/src/js/script.js": "link src/js/script.js",
-    "@mikroways/reveal-md-common/preproc.js": "link preproc.js",
     "@mikroways/reveal-md-common/reveal-md.json": "link reveal-md.json"
   },
   "prestatic": {
     "@mikroways/reveal-md-common/src/js/script.js": "link src/js/script.js",
-    "@mikroways/reveal-md-common/preproc.js": "link preproc.js",
     "@mikroways/reveal-md-common/reveal-md.json": "link reveal-md.json"
   },
   "license": "MIT"

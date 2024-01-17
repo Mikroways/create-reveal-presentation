@@ -1,7 +1,7 @@
 {
   "name": "@mikroways/create-reveal-presentation",
   "description": "Create Mikroways reveal-md presentation",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "Christian Rodriguez <christian.rodriguez@mikroways.net>",
   "bin": "src/cli.js",
   "files": [

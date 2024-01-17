@@ -2,3 +2,4 @@ _static/
 reveal-md.json
 preproc.js
 src/js/script.js
+*.pdf

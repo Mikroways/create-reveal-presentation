@@ -1,10 +1,6 @@
----
-title: {{ space name }}
----
-
 SLIDE_FMT: main
 
-# {{ space name }}
+# {{capital name space=true}}
 ---
 
 FILE: sections/slide-1.md

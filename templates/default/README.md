@@ -10,6 +10,12 @@ El primer paso luego de descargar este curso, es instalar las dependencias:
 npm i
 ```
 
+Luego, es recomendable ajustar el campo **`name`** dentro del `package.json`
+dado que será el nombre que se utilice en:
+
+* El HEAD del slide para el navegador
+* El título en el encabezado de los documentos a generar como pdf
+
 Con frecuencia, es recomendable actualizar las dependencias:
 
 ```
@@ -28,7 +34,9 @@ Para generar una versión lista para ser servida de forma estática:
 ```
 npm run static
 ```
-> Genera la salida en en la carpeta `_static/`
+> Genera la salida en en la carpeta `_static/`. Si el slide se publicará en una
+> URL absoluta conocida a priori, se recomienda modificar `package.json`
+> agergando a este script, las opciones `--absolute-url` y `--featured-slide
 
 Además se ofrece la funcionalidad de generar una imagen de contenedor lista para
 ser usada:
@@ -36,6 +44,24 @@ ser usada:
 ```
 npm run container
 ```
+
+Para imprimir el curso como pdf:
+
+```bash
+npm run as-pdf
+```
+
+> El pdf tendrá el nombre `{{kebab.name }}.pdf`
+
+Para generar la documentación asociada para actividades, talleres u otro
+documento que se entregará como pdf:
+
+```bash
+npm run docs
+```
+
+> Notar que todo lo referente a documentación se debe mantener bajo la carpeta
+> `docs/` usando Markdown.
 
 ## Configuraciones
 
@@ -68,7 +94,7 @@ npm run container
 Luego podemos probarla con [podman](https://podman.io/):
 
 ```
-podman run -p 8080:8080 {{ name }}:latest
+podman run -p 8080:8080 {{kebab.name }}:latest
 ```
 
 Y la probamos con:

@@ -12,7 +12,7 @@ create('create-mw-reveal-presentation', {
   defaultLicense: 'MIT',
   after: async ({ installNpmPackage }) => {
     console.log('Installing required packages');
-    await installNpmPackage('reveal-md');
+    await installNpmPackage('@mikroways/md2pdf-theme')
   },
   caveat: ({ packageDir }) =>  {
     console.log('\nNext steps:');
