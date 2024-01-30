@@ -10,10 +10,6 @@ create('create-mw-reveal-presentation', {
   defaultPackageManage: 'npm',
   promptForLicense: false,
   defaultLicense: 'MIT',
-  after: async ({ installNpmPackage }) => {
-    console.log('Installing required packages');
-    await installNpmPackage('@mikroways/md2pdf-theme')
-  },
   caveat: ({ packageDir }) =>  {
     console.log('\nNext steps:');
     console.log(`\tcd ${packageDir} && npm run start`);

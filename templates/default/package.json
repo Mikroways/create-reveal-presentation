@@ -3,8 +3,8 @@
   "description": "{{description}}",
   "version": "0.0.0",
   "dependencies": {
-    "@mikroways/reveal-md-common": "^1.1.0",
-    "@mikroways/md2pdf-theme": "^1.0.0"
+    "@mikroways/reveal-md-common": "~1.1.0",
+    "@mikroways/md2pdf-theme": "~1.0.0"
   },
   "author": "{{contact}}",
   "scripts": {
