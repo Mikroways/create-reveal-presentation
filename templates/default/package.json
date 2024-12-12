@@ -3,32 +3,21 @@
   "description": "{{description}}",
   "version": "0.0.0",
   "dependencies": {
-    "@mikroways/reveal-md-common": "~1.1.0",
+    "@mikroways/reveal-md-common": "~1.2.0",
     "@mikroways/md2pdf-theme": "~1.0.0"
   },
   "author": "{{contact}}",
   "scripts": {
-    "prepare": "postinstall",
-    "prestart": "postinstall",
-    "prestatic": "postinstall",
-    "poststatic": "rm _static/_assets/src/js/script.js && cp -L src/js/script.js _static/_assets/src/js/script.js",
-    "start": "reveal-md src/start.md --preprocessor ../../@mikroways/reveal-md-common/preproc.js --watch --title \"$npm_package_name\"",
-    "static": "rm -fr _static && reveal-md src/start.md --preprocessor ../../@mikroways/reveal-md-common/preproc.js --static --title \"$npm_package_name\"",
+    "prepare": "mkdir -p src/js && ln -fs ../../node_modules/@mikroways/reveal-md-common/src/js/script.js src/js/script.js",
+    "prestart": "touch reveal-md.local.json && (test -s reveal-md.local.json || echo '{}' > reveal-md.local.json ) && json-merger node_modules/@mikroways/reveal-md-common/reveal-md.json reveal-md.local.json -o reveal-md.json",
+    "prestatic": "npm run prestart",
+    "poststatic": "rm _static/_assets/src/js/script.js && cp -L src/js/script.js _static/_assets/src/js/script.js && mkdir _static/mermaid/dist -p && cp ./node_modules/mermaid/dist/mermaid.min.js _static/mermaid/dist",
+    "start": "reveal-md src/start.md --preprocessor node_modules/@mikroways/reveal-md-common/preproc.js --watch --title \"$npm_package_name\"",
+    "static": "rm -fr _static && reveal-md src/start.md --preprocessor node_modules/@mikroways/reveal-md-common/preproc.js --static --title \"$npm_package_name\"",
+    "static:moodle": "npm run static && for file in $(find _static -type l); do mv $(realpath $file) $file; done",
     "container": "npm run static && buildah build -f Containerfile -t {{kebab name}} _static",
-    "as-pdf": "reveal-md src/start.md --preprocessor ../../@mikroways/reveal-md-common/preproc.js --title \"$npm_package_name\" --print {{kebab name}}.pdf --page-size a4",
+    "as-pdf": "reveal-md src/start.md --preprocessor node_modules/@mikroways/reveal-md-common/preproc.js --title \"$npm_package_name\" --print {{kebab name}}.pdf --page-size a4",
     "docs": "md-to-pdf --document-title \"$npm_package_name\" --config-file node_modules/@mikroways/md2pdf-theme/config.js docs/**/*.md"
-  },
-  "prepare": {
-    "@mikroways/reveal-md-common/src/js/script.js": "link src/js/script.js",
-    "@mikroways/reveal-md-common/reveal-md.json": "link reveal-md.json"
-  },
-  "prestart": {
-    "@mikroways/reveal-md-common/src/js/script.js": "link src/js/script.js",
-    "@mikroways/reveal-md-common/reveal-md.json": "link reveal-md.json"
-  },
-  "prestatic": {
-    "@mikroways/reveal-md-common/src/js/script.js": "link src/js/script.js",
-    "@mikroways/reveal-md-common/reveal-md.json": "link reveal-md.json"
   },
   "license": "MIT"
 }
