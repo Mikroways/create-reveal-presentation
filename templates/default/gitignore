@@ -1,3 +1,4 @@
+.direnv
 _static/
 reveal-md.json
 preproc.js
